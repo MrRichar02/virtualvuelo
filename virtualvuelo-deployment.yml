@@ -1,0 +1,83 @@
+apiVersion: apps/v1
+
+kind: Deployment
+
+metadata:
+
+  name: virtualvuelo-app
+
+spec:
+
+  replicas: 2
+
+  selector:
+
+    matchLabels:
+
+      app: virtualvuelo
+
+  template:
+
+    metadata:
+
+      labels:
+
+        app: virtualvuelo
+
+    spec:
+
+      containers:
+
+        - name: virtualvuelo-app
+
+          image: virtualvuelo-app:latest
+
+          imagePullPolicy: Never
+
+          ports:
+
+            - containerPort: 8080
+
+          env:
+
+            - name: SPRING_DATASOURCE_URL
+
+              value: "jdbc:mysql://mysql:3306/virtualvuelo"
+
+            - name: SPRING_DATASOURCE_USERNAME
+
+              value: root
+
+            - name: SPRING_DATASOURCE_PASSWORD
+
+              valueFrom:
+
+                configMapKeyRef:
+
+                  name: mysql-config
+
+                  key: MYSQL_ROOT_PASSWORD
+
+---
+
+apiVersion: v1
+
+kind: Service
+
+metadata:
+
+  name: virtualvuelo-service
+
+spec:
+
+  ports:
+
+    - port: 8080
+
+      targetPort: 8080
+
+  selector:
+
+    app: virtualvuelo
+
+  type: LoadBalancer
