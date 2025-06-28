@@ -31,7 +31,6 @@ spec:
         - name: mysql
 
           image: mysql
-
           envFrom:
 
             - configMapRef:
