@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: virtualvuelo
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/MrRichar02/virtualvuelo.git
+    targetRevision: HEAD
+    path: cluster
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: virtualvuelo
+
+    syncPolicy:
+      syncOptions:
+      - CreateNamespace=true
+
+      automated:
+        selfHeal: true
+        prune: true
+
