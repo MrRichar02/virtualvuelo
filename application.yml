@@ -13,3 +13,8 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: virtualvuelo
+
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
