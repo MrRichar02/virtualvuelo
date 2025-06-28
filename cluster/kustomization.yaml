@@ -1,0 +1,6 @@
+# cluster/kustomization.yaml
+resources:
+  - mysql-configmap.yml
+  - mysql-deployment.yml
+  - virtualvuelo-deployment.yml
+
