@@ -12,6 +12,7 @@ spec:
     path: cluster
   destination:
     server: https://kubernetes.default.svc
+    namespace: default
 
   syncPolicy:
     automated:

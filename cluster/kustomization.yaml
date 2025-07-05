@@ -1,7 +1,0 @@
-# cluster/kustomization.yaml
-namespace: default
-resources:
-  - mysql-configmap.yml
-  - mysql-deployment.yml
-  - virtualvuelo-deployment.yml
-
