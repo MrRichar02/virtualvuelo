@@ -17,6 +17,7 @@
         packages = with pkgs; [
           maven
           jdk11
+          jmeter
         ];
 
         shellHook = ''
